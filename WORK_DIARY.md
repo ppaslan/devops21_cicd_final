@@ -1,6 +1,9 @@
 # Team name
+Latin Kings
 
 ## Team members
+Pål Aslan
+Zehran Tiftikci
 
 ## Work Diary
 
