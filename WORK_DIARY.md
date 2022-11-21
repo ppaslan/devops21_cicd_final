@@ -3,7 +3,7 @@ Latin Kings
 
 ## Team members
 Pål Aslan
-Zehran Tiftikci
+Zeran Tiftikci
 
 ## Work Diary
 
