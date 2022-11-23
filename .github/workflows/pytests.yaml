@@ -53,5 +53,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          file: src/Dockerfile
           push: true
           tags: ghcr.io/ppaslan/shopapp:${{ github.ref_name }}-${{ steps.vars.outputs.sha }}
