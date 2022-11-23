@@ -7,6 +7,7 @@ bp = Blueprint('product', __name__, url_prefix='/product')
 
 
 def include_column_names(resultset, description):
+    """Include needed colum names"""
     column_names = [row[0] for row in description]
     return [dict(zip(column_names, row)) for row in resultset]
 
