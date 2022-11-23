@@ -28,3 +28,9 @@ jobs:
       - name: Run unit tests
         run: |
           pytest --cov=shop_app tests/unit
+      - name: fail this
+        run: |
+          awdadawdawd
+      - name: test if this runs if previous failed
+        run: |
+          pwd
