@@ -1,5 +1,4 @@
 name: Python package
-
 on: [push]
 
 jobs:
@@ -23,6 +22,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
-      - name: Test with pytest
+      - name: Run Pylint
         run: |
-          pytest
+          pylint --errors-only shop_app
+      - name: Run unit tests
+        run: |
+          pytest --cov=shop_app tests/unit
