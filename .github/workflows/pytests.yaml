@@ -59,4 +59,4 @@ jobs:
 
       - name: Run integration tests with coverage
         run: |
-          pytest --cov=shop_app tests/unit
+          pytest --cov=shop_app tests/integration
