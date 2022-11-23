@@ -56,5 +56,3 @@ jobs:
           file: src/Dockerfile
           push: true
           tags: ghcr.io/ppaslan/devops21_cicd_final/shopapp:${{ github.ref_name }}-${{ steps.vars.outputs.sha }}
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
