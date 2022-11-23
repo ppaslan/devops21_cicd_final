@@ -52,7 +52,7 @@ jobs:
       - name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: src/.
           file: src/Dockerfile
           push: true
           tags: ghcr.io/ppaslan/shopapp:${{ github.ref_name }}-${{ steps.vars.outputs.sha }}
