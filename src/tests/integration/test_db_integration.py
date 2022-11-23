@@ -1,10 +1,8 @@
-# from flask import g
 import pytest
 import mysql.connector
 import os
-from shop_app import create_app
+from shop_app import create_app, db
 from flask import g
-from shop_app import db
 
 
 def is_responsive(config):
