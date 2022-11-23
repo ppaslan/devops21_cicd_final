@@ -44,6 +44,10 @@ jobs:
         run: |
           short_sha=$(git rev-parse --short ${{ github.sha }})
           echo "::set-output name=sha::$short_sha"
+      - name: Get short version of sha
+        run: |
+          pwd
+          ls
 
       - name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v3
