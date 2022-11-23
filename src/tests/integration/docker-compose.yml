@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    environment:
+      - MYSQL_DATABASE=shopapp
+      - MYSQL_ROOT_PASSWORD=thisisfortest
+      - MYSQL_USER=shopapp
+      - MYSQL_PASSWORD=thisisfortest
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+volumes:
+  db:
+    driver: local
+
