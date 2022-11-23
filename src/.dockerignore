@@ -1,0 +1,13 @@
+# Ignore everything
+*
+# Allow this directory
+!/shop_app
+!/requirements.txt
+
+# Ignore these files inside the allowed directory
+**/*~
+**/*.log
+**/.DS_Store
+**/__pycache__
+
+
