@@ -14,7 +14,11 @@ def is_responsive(config):
 
 @pytest.fixture(scope="session")
 def docker_compose_file(pytestconfig):
-    return os.path.join(str(pytestconfig.rootdir), "src", "tests", "integration", "docker-compose.yml")
+    compose = os.path.join(str(pytestconfig.rootdir), "tests", "integration", "docker-compose.yml")
+    # In case someone ran pytest outside of the src folder.
+    if not os.path.exists(compose):
+        compose = os.path.join(str(pytestconfig.rootdir), "src", "tests", "integration", "docker-compose.yml")
+    return compose
 
 
 @pytest.fixture(scope="session")
