@@ -57,6 +57,7 @@ jobs:
           push: true
           tags: ghcr.io/ppaslan/devops21_cicd_final/shopapp:${{ github.ref_name }}-${{ steps.vars.outputs.sha }}
 
+
       - name: Run integration tests with coverage
         run: |
           pytest --cov=shop_app tests/integration
