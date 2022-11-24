@@ -55,3 +55,7 @@ This project uses helm charts for easy application and package management.
 
 Argocd is now setup to monitor your instances/ folder for new application and deploy them to the cluster.
 If Argocd notices any changes in the helm charts then it will make sure to update the state of your application in kubernetes.
+
+## Environment
+
+Follow the README.md in src/ folder
