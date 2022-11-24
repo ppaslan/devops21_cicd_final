@@ -38,7 +38,7 @@ def db_config(docker_ip, docker_services):
     return config
 
 
-@pytest.fixture()
+@pytest.fixture(scope="session")
 def test_client():
     app = create_app(**{"TESTING": True})
     with app.test_client() as test_client:
