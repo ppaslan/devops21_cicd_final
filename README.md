@@ -41,7 +41,7 @@ This project uses helm charts for easy application and package management.
     spec:
     project: default
     source:
-        repoURL: git@github.com:ppaslan/devops21_cicd_final
+        repoURL: https://github.com/ppaslan/devops21_cicd_final.git
         targetRevision: main
         path: instances/shop-production
     destination:
