@@ -101,3 +101,4 @@ jobs:
           branch: release-${{ steps.tags.outputs.tag }}
           add-paths: "instances/shop-production/values.yaml"
           delete-branch: true
+          token: ${{ secrets.TOKEN }}
