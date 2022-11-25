@@ -81,8 +81,11 @@ jobs:
       - name: Bump up version
         if: steps.tags.outputs.needbump == 'true'
         id: bump
+        env:
+          OLDTAG: ${{ steps.tags.outputs.oldtag }}
+          TAG: ${{ steps.tags.outputs.tag }}
         run: |
-          sed -i "s#$steps.tags.outputs.oldtag#$steps.tags.outputs.tag#g" ../instances/shop-production/values.yaml
+          sed -i "s#$OLDTAG#$TAG#g" ../instances/shop-production/values.yaml
           echo "::set-output name=needpush::true"
 
       - name: Run integration tests with coverage
