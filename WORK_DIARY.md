@@ -29,3 +29,8 @@ Added pre-commit configuration and also pylint
 ### Day 3
 
 Added final unit and integration tests, full coverage is now achieved.
+
+### Day 4
+
+Finished the Github action logic
+Added steps that creates a PR when a new release is ready to be merged into main.
