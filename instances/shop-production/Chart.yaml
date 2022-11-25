@@ -1,0 +1,12 @@
+apiVersion: v2
+name: shopapp-template
+description: A Helm chart for shopapp
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+
+dependencies:
+  - name: shopapp
+    version: 0.1.0
+  - name: mysql
+    version: 9.3.2

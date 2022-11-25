@@ -5,3 +5,4 @@ metadata:
   name: shop-instances
 
 resources:
+  - shop-production.yaml
