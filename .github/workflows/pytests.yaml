@@ -80,6 +80,7 @@ jobs:
 
       - name: Bump up version
         if: steps.tags.outputs.needbump == 'true'
+        id: bump
         run: |
           sed -i "s#$steps.tags.outputs.oldtag#$steps.tags.outputs.tag#g" ../instances/shop-production/values.yaml
           echo "::set-output name=needpush::true"
@@ -99,7 +100,7 @@ jobs:
           tags: ghcr.io/ppaslan/devops21_cicd_final/shopapp:${{ steps.tags.outputs.tag }}
 
       - name: Create pull request for new version.
-        if: steps.tags.outputs.needpush == 'true'
+        if: steps.bump.outputs.needpush == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: Use latest release image
