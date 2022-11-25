@@ -73,6 +73,7 @@ jobs:
             VERSION=$(sed -n 's#.*ghcr.io/ppaslan/devops21_cicd_final/shopapp:##p' ../instances/shop-production/values.yaml)
             NEW_VERSION=$(echo $VERSION | awk -F. '/[0-9]+\./{$NF++;print}' OFS=.)
 
+            echo "::set-output name=oldtag::$VERSION"
             echo "::set-output name=tag::$NEW_VERSION"
             echo "::set-output name=needbump::true"
           fi
@@ -80,7 +81,7 @@ jobs:
       - name: Bump up version
         if: steps.tags.outputs.needbump == 'true'
         run: |
-          sed -i "s#$VERSION#$NEW_VERSION#g" ../instances/shop-production/values.yaml
+          sed -i "s#$steps.tags.outputs.oldtag#$steps.tags.outputs.tag#g" ../instances/shop-production/values.yaml
           echo "::set-output name=needpush::true"
 
       - name: Run integration tests with coverage
