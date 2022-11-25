@@ -97,5 +97,5 @@ jobs:
         with:
           default_author: github_actions
           message: "Bumping image version to latest"
-          add: "instances/shopapp-production/values.yaml"
+          add: "instances/shop-production/values.yaml"
           push: true
