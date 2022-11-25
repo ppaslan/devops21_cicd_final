@@ -98,4 +98,5 @@ jobs:
           default_author: github_actions
           message: "Bumping image version to latest"
           add: "instances/shop-production/values.yaml"
+          new_branch: release-${{ steps.tags.outputs.tag }}
           push: true
