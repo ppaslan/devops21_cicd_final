@@ -20,3 +20,8 @@ def test_include_column_names():
 def test_increase_by_one():
     value = product.increase_by_one(1)
     assert value == 2
+
+
+def test_useless_message():
+    message = product.useless_message()
+    assert message == {"message": "This message is quite useless"}
