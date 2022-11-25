@@ -98,7 +98,7 @@ jobs:
         with:
           default_author: github_actions
           message: "Bumping image version to latest"
-          add: "../instances/shopapp-production/values.yaml"
+          add: "instances/shopapp-production/values.yaml"
 
       - name: Run integration tests with coverage
         if: steps.src-files-changed.outputs.any_changed == 'true'
