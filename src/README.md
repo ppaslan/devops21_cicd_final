@@ -38,6 +38,6 @@ View errors only: `pylint shop_app --errors-only`
 
 Run unit tests only: `pytest --cov=shop_app tests/unit`
 
-Run integration tests: `pytest --cov=shop_app tests/unit`
+Run integration tests: `pytest --cov=shop_app tests/integration`
 
 Run both unit and integration tests: `pytest --cov=shop_app`
