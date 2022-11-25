@@ -1,5 +1,6 @@
 name: Python package
-on: [push]
+on:
+  push:
 
 jobs:
   build:
@@ -14,29 +15,49 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Get changed files in the src folder
+        id: src-files-changed
+        uses: tj-actions/changed-files@v34
+        with:
+          files: |
+            src/**
+
+      - name: Run step if any file(s) in the docs folder change
+        if: steps.src-files-changed.outputs.any_changed == 'true'
+        run: |
+          echo "One or more files in the docs folder has changed."
+          echo "List all the files that have changed: ${{ steps.changed-files-specific.outputs.all_changed_files }}"
+
       - name: Set up Python ${{ matrix.python-version }}
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
 
       - name: Run Pylint
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         run: |
           pylint --errors-only shop_app
 
       - name: Run unit tests with coverage
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         run: |
           pytest --cov=shop_app tests/unit
 
       - name: Set up Docker Buildx
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         id: buildx
         uses: docker/setup-buildx-action@v2
 
       - name: Login to ghcr
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
@@ -44,12 +65,14 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get short version of sha
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         id: vars
         run: |
           short_sha=$(git rev-parse --short ${{ github.sha }})
           echo "::set-output name=sha::$short_sha"
 
       - name: Build image and push to Docker Hub and GitHub Container Registry
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         uses: docker/build-push-action@v3
         with:
           context: src/.
@@ -57,7 +80,7 @@ jobs:
           push: true
           tags: ghcr.io/ppaslan/devops21_cicd_final/shopapp:${{ github.ref_name }}-${{ steps.vars.outputs.sha }}
 
-
       - name: Run integration tests with coverage
+        if: steps.src-files-changed.outputs.any_changed == 'true'
         run: |
           pytest --cov=shop_app tests/integration
