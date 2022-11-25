@@ -59,3 +59,9 @@ If Argocd notices any changes in the helm charts then it will make sure to updat
 ## Environment
 
 Follow the README.md in src/ folder
+
+
+## Acceesing the app
+
+1. `kubectl port-forward svc/shop-production-http -n shop-production  8080:80`
+2. Browse to `127.0.0.1:8080`
