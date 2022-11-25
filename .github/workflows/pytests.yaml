@@ -91,12 +91,13 @@ jobs:
           push: true
           tags: ghcr.io/ppaslan/devops21_cicd_final/shopapp:${{ steps.tags.outputs.tag }}
 
-      - name: Commit version bump in helm values file.
+      - name: Create pull request for new version.
         if: steps.tags.outputs.needpush == 'true'
-        uses: EndBug/add-and-commit@v9
+        uses: peter-evans/create-pull-request@v4
         with:
-          default_author: github_actions
-          message: "Bumping image version to latest"
-          add: "instances/shop-production/values.yaml"
-          new_branch: release-${{ steps.tags.outputs.tag }}
-          push: true
+          commit-message: Use latest release image
+          title: Use latest release image
+          body: This is an automated PR
+          branch: release-${{ steps.tags.outputs.tag }}
+          add-paths: "instances/shop-production/values.yaml"
+          delete-branch: true
