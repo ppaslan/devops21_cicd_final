@@ -26,12 +26,6 @@ jobs:
           files: |
             src/**
 
-      - name: Run step if any file(s) in the docs folder change
-        if: steps.src-files-changed.outputs.any_changed == 'true'
-        run: |
-          echo "One or more files in the docs folder has changed."
-          echo "List all the files that have changed: ${{ steps.changed-files-specific.outputs.all_changed_files }}"
-
       - name: Set up Python ${{ matrix.python-version }}
         if: steps.src-files-changed.outputs.any_changed == 'true'
         uses: actions/setup-python@v4
@@ -83,6 +77,11 @@ jobs:
             echo "::set-output name=needpush::true"
           fi
 
+      - name: Run integration tests with coverage
+        if: steps.src-files-changed.outputs.any_changed == 'true'
+        run: |
+          pytest --cov=shop_app tests/integration
+
       - name: Build image and push to Docker Hub and GitHub Container Registry
         if: steps.src-files-changed.outputs.any_changed == 'true'
         uses: docker/build-push-action@v3
@@ -99,8 +98,4 @@ jobs:
           default_author: github_actions
           message: "Bumping image version to latest"
           add: "instances/shopapp-production/values.yaml"
-
-      - name: Run integration tests with coverage
-        if: steps.src-files-changed.outputs.any_changed == 'true'
-        run: |
-          pytest --cov=shop_app tests/integration
+          push: true
