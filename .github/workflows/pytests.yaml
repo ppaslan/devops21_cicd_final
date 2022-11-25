@@ -61,7 +61,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set Docker tags
+      - name: Set Docker image tags
         if: steps.src-files-changed.outputs.any_changed == 'true'
         id: tags
         run: |
@@ -72,17 +72,23 @@ jobs:
           else
             VERSION=$(sed -n 's#.*ghcr.io/ppaslan/devops21_cicd_final/shopapp:##p' ../instances/shop-production/values.yaml)
             NEW_VERSION=$(echo $VERSION | awk -F. '/[0-9]+\./{$NF++;print}' OFS=.)
-            sed -i "s#$VERSION#$NEW_VERSION#g" ../instances/shop-production/values.yaml
+
             echo "::set-output name=tag::$NEW_VERSION"
-            echo "::set-output name=needpush::true"
+            echo "::set-output name=needbump::true"
           fi
+
+      - name: Bump up version
+        if: steps.tags.outputs.needbump == 'true'
+        run: |
+          sed -i "s#$VERSION#$NEW_VERSION#g" ../instances/shop-production/values.yaml
+          echo "::set-output name=needpush::true"
 
       - name: Run integration tests with coverage
         if: steps.src-files-changed.outputs.any_changed == 'true'
         run: |
           pytest --cov=shop_app tests/integration
 
-      - name: Build image and push to Docker Hub and GitHub Container Registry
+      - name: Build image and push to GitHub Container Registry
         if: steps.src-files-changed.outputs.any_changed == 'true'
         uses: docker/build-push-action@v3
         with:
