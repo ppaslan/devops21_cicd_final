@@ -15,3 +15,8 @@ def test_include_column_names():
         {"id": 2, "name": "Nail", "price": 99},
         {"id": 1, "name": "Hammer", "price": 199},
     ]
+
+
+def test_increase_by_one():
+    value = product.increase_by_one(1)
+    assert value == 2

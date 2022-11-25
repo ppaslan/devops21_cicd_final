@@ -32,3 +32,6 @@ def create_product():
             database.commit()
             return jsonify({"status": "ok"})
     return jsonify({"error": "Failed to parse json"}), 400
+
+def increase_by_one(number):
+    return number + 1
