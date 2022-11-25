@@ -19,10 +19,12 @@ def index():
         products = cur.fetchall()
         return jsonify(include_column_names(products, cur.description))
 
+
 @bp.route("/useless")
 def useless_route():
     """Useless"""
-    return jsonify({"message": "This message is NOT useless"})
+    return jsonify(useless_message())
+
 
 @bp.route("/", methods=("POST",))
 def create_product():
@@ -37,8 +39,10 @@ def create_product():
             return jsonify({"status": "ok"})
     return jsonify({"error": "Failed to parse json"}), 400
 
+
 def increase_by_one(number):
     return number + 1
+
 
 def useless_message():
     return {"message": "This message is quite useless"}
