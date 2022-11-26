@@ -25,7 +25,7 @@ Development
 
 This repo uses pre-commit hooks to ensure the quality of the application. This means that everytime you commit something there will be checks running, among those are linting and unittests.
 
-You can however run unit tests, integration tests or linting manually.
+You can however run unit/integration tests or linting manually.
 
 ## Linting
 
