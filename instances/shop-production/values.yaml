@@ -13,7 +13,7 @@ mysql:
 
 shopapp:
   replicas: 1
-  image: ghcr.io/ppaslan/devops21_cicd_final/shopapp:1.0.7
+  image: ghcr.io/ppaslan/devops21_cicd_final/shopapp:1.0.8
   regCredSecretName: repcred
   imagePullPolicy: IfNotPresent
   serviceType: ClusterIP
