@@ -25,3 +25,7 @@ def test_increase_by_one():
 def test_useless_message():
     message = product.useless_message()
     assert message == {"message": "This message is quite useless"}
+
+def test_return_my_name():
+    my_name = product.return_my_name()
+    assert my_name == {"My name is Zoro"}
