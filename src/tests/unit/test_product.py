@@ -28,4 +28,4 @@ def test_useless_message():
 
 def test_return_my_name():
     my_name = product.return_my_name()
-    assert my_name == {"My name is Zoro"}
+    assert my_name == {"name": "My name is Zoro"}
