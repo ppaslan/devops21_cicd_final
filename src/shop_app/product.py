@@ -53,4 +53,4 @@ def useless_message():
     return {"message": "This message is quite useless"}
 
 def return_my_name():
-    return {"My name is Zoro"}
+    return {"name": "My name is Zoro"}
