@@ -25,3 +25,7 @@ def test_create_product_with_invalid_data(test_client, modify_db_config):
 def test_useless_route(test_client, modify_db_config):
     resp = test_client.get("/product/useless")
     assert resp.data.decode().strip() == '{"message":"This message is quite useless"}'
+
+def test_my_name_route(test_client, modify_db_config):
+    resp = test_client.get("/product/my_name")
+    assert resp.data.decode().strip() == '{"name":"failed test"}'
