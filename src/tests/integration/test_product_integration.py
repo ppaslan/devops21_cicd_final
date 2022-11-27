@@ -28,4 +28,4 @@ def test_useless_route(test_client, modify_db_config):
 
 def test_my_name_route(test_client, modify_db_config):
     resp = test_client.get("/product/my_name")
-    assert resp.data.decode().strip() == '{"name":"failed test"}'
+    assert resp.data.decode().strip() == '{"name":"My name is Zoro"}'
