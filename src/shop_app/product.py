@@ -25,6 +25,11 @@ def useless_route():
     """Useless"""
     return jsonify(useless_message())
 
+@bp.route("/my_name")
+def my_name_route():
+    """My name"""
+    return jsonify(return_my_name())
+
 
 @bp.route("/", methods=("POST",))
 def create_product():
@@ -46,3 +51,6 @@ def increase_by_one(number):
 
 def useless_message():
     return {"message": "This message is quite useless"}
+
+def return_my_name():
+    return {"My name is Zoro"}
