@@ -20,6 +20,7 @@ Development
 1. `python3 -m venv .venv && source .venv/bin/activate`
 2. `pip3 install --upgrade pip`
 3. `pip3 install -r requirements-dev.txt`
+4. `pre-commit install`
 
 # Testing and linting
 
