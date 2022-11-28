@@ -10,8 +10,8 @@ This project uses helm charts for easy application and package management.
 
 1. [Install Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation)
 2. Clone this repo
-3. `kubectl apply -f argocd/install.yaml`
-4. `kubectl apply -f argocd/argocd-shop-instances.yaml`
+3. `kubectl apply -f argocd/install.yaml -n argocd`
+4. `kubectl apply -f argocd/argocd-shop-instances.yaml -n argocd`
 
 ## Application instance
 
